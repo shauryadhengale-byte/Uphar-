@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Uphar — Thoughtful Gifts, Lasting Memories</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#16233F; --navy-2:#223458; --navy-soft:#3B4A6B;
+    --gold:#C9A15D; --gold-light:#E4C98A; --gold-deep:#A9803E;
+    --cream:#FBF3E7; --cream-2:#F3E8D8; --white:#FFFDFA; --ink:#2A2A28;
+    --line:rgba(22,35,63,0.12); --shadow:0 20px 40px -20px rgba(22,35,63,0.25);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{background:var(--cream);color:var(--ink);font-family:'Jost',sans-serif;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3,.display{font-family:'Playfair Display',serif;color:var(--navy);margin:0;}
+  a{color:inherit;text-decoration:none;}
+  button{font-family:'Jost',sans-serif;cursor:pointer;}
+  img{max-width:100%;display:block;}
+  .eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-deep);font-weight:500;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+  .section{padding:76px 0;}
+  @media (max-width:640px){ .section{padding:52px 0;} .wrap{padding:0 18px;} }
+  header{position:sticky;top:0;z-index:40;background:rgba(251,243,231,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  .nav{max-width:1180px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+  .brand{display:flex;align-items:center;gap:10px;}
+  .brand-mark{width:38px;height:38px;flex:none;}
+  .brand-text .name{font-family:'Playfair Display',serif;font-size:24px;color:var(--navy);line-height:1;}
+  .brand-text .tag{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep);}
+  .nav-links{display:flex;align-items:center;gap:28px;font-size:14px;}
+  .nav-links a{color:var(--navy-2);}
+  .nav-links a:hover{color:var(--gold-deep);}
+  .icon-btn{position:relative;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--white);display:flex;align-items:center;justify-content:center;transition:.2s;}
+  .icon-btn:hover{border-color:var(--gold);}
+  .cart-count{position:absolute;top:-6px;right:-6px;background:var(--gold-deep);color:#fff;font-size:10px;font-weight:600;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+  @media (max-width:900px){ .nav-links{display:none;} }
+  .hero{position:relative;overflow:hidden;padding:90px 0 70px;}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center;}
+  @media (max-width:900px){ .hero-grid{grid-template-columns:1fr;} }
+  .hero h1{font-size:clamp(36px,5vw,58px);line-height:1.08;font-weight:600;letter-spacing:-.01em;}
+  .hero h1 em{font-style:italic;color:var(--gold-deep);}
+  .hero p.lede{font-size:17px;line-height:1.7;color:var(--navy-soft);max-width:460px;margin-top:18px;}
+  .hero-ctas{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap;}
+  .btn-primary{background:var(--navy);color:var(--white);padding:15px 30px;border-radius:30px;border:none;font-size:14px;display:inline-flex;align-items:center;gap:8px;transition:.25s;}
+  .btn-primary:hover{background:var(--gold-deep);}
+  .btn-outline{background:transparent;border:1px solid var(--navy);color:var(--navy);padding:14px 28px;border-radius:30px;font-size:14px;transition:.25s;}
+  .btn-outline:hover{border-color:var(--gold-deep);color:var(--gold-deep);}
+  .hero-art{position:relative;aspect-ratio:1/1;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff,var(--cream-2) 70%);display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);}
+  .hero-art img{width:78%;height:78%;object-fit:cover;border-radius:50%;}
+  .hero-badge{position:absolute;bottom:6%;left:-4%;background:var(--white);border:1px solid var(--line);border-radius:16px;padding:14px 18px;box-shadow:var(--shadow);display:flex;align-items:center;gap:10px;font-size:13px;}
+  @media (max-width:900px){ .hero-badge{left:0;} }
+  .section-head{text-align:center;max-width:600px;margin:0 auto 44px;}
+  .section-head h2{font-size:clamp(28px,3.4vw,38px);margin-top:8px;}
+  .section-head p{color:var(--navy-soft);margin-top:12px;font-size:15px;line-height:1.6;}
+  .chips{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:40px;}
+  .chip{padding:9px 20px;border-radius:30px;border:1px solid var(--line);background:var(--white);font-size:13px;color:var(--navy-2);transition:.2s;}
+  .chip.active,.chip:hover{background:var(--navy);color:#fff;border-color:var(--navy);}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  @media (max-width:900px){ .grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:560px){ .grid{grid-template-columns:1fr;} }
+  .card{background:var(--white);border-radius:18px;overflow:hidden;border:1px solid var(--line);box-shadow:0 10px 24px -18px rgba(22,35,63,.35);transition:transform .3s,box-shadow .3s;display:flex;flex-direction:column;}
+  .card:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
+  .card-img{position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--cream-2);}
+  .card-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s;}
+  .card:hover .card-img img{transform:scale(1.06);}
+  .tag-badge{position:absolute;top:12px;left:12px;background:var(--gold-deep);color:#fff;font-size:11px;padding:5px 10px;border-radius:20px;font-weight:500;}
+  .oos-overlay{position:absolute;inset:0;background:rgba(22,35,63,.55);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;letter-spacing:.1em;text-transform:uppercase;}
+  .card-body{padding:18px 18px 20px;display:flex;flex-direction:column;gap:6px;flex:1;}
+  .card-cat{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep);}
+  .card-title{font-family:'Playfair Display',serif;font-size:19px;color:var(--navy);}
+  .card-desc{font-size:13px;color:var(--navy-soft);line-height:1.5;min-height:34px;}
+  .price-row{display:flex;align-items:baseline;gap:8px;margin-top:4px;}
+  .price-now{font-size:18px;font-weight:600;color:var(--navy);}
+  .price-was{font-size:13px;color:#9a9a92;text-decoration:line-through;}
+  .card-actions{margin-top:auto;padding-top:12px;}
+  .add-btn{width:100%;padding:11px;border-radius:10px;border:1px solid var(--navy);background:var(--navy);color:#fff;font-size:13px;transition:.2s;}
+  .add-btn:hover{background:var(--gold-deep);border-color:var(--gold-deep);}
+  .add-btn:disabled{background:#e4e0d8;border-color:#e4e0d8;color:#9a9689;cursor:not-allowed;}
+  .trust{background:var(--navy);color:var(--cream);}
+  .trust .wrap{display:flex;justify-content:space-between;gap:20px;padding:30px 28px;flex-wrap:wrap;}
+  .trust-item{display:flex;align-items:center;gap:10px;font-size:13px;flex:1;min-width:200px;}
+  .trust-item .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);flex:none;}
+  footer{background:var(--navy-2);color:var(--cream);padding:50px 0 26px;}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;}
+  @media (max-width:700px){ .foot-grid{grid-template-columns:1fr;gap:28px;} }
+  footer h4{font-family:'Playfair Display',serif;font-size:16px;color:var(--gold-light);margin-bottom:14px;}
+  footer p, footer a{font-size:13px;color:rgba(251,243,231,.75);line-height:2;}
+  .foot-bottom{margin-top:40px;padding-top:20px;border-top:1px solid rgba(251,243,231,.14);font-size:12px;color:rgba(251,243,231,.5);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+  .overlay{position:fixed;inset:0;background:rgba(22,35,63,.45);z-index:60;opacity:0;pointer-events:none;transition:opacity .25s;}
+  .overlay.show{opacity:1;pointer-events:auto;}
+  .drawer{position:fixed;top:0;right:0;height:100%;width:420px;max-width:92vw;background:var(--cream);z-index:70;box-shadow:-20px 0 40px rgba(0,0,0,.15);transform:translateX(100%);transition:transform .3s;display:flex;flex-direction:column;}
+  .drawer.show{transform:translateX(0);}
+  .drawer-head{padding:22px 24px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;}
+  .drawer-head h3{font-size:20px;}
+  .close-x{background:none;border:none;font-size:20px;color:var(--navy);width:32px;height:32px;}
+  .drawer-body{flex:1;overflow-y:auto;padding:18px 24px;}
+  .cart-row{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);}
+  .cart-row img{width:64px;height:64px;object-fit:cover;border-radius:10px;flex:none;}
+  .cart-row .ci-info{flex:1;}
+  .cart-row .ci-name{font-family:'Playfair Display',serif;font-size:15px;color:var(--navy);}
+  .cart-row .ci-price{font-size:13px;color:var(--navy-soft);margin-top:2px;}
+  .qty-ctrl{display:flex;align-items:center;gap:10px;margin-top:8px;}
+  .qty-ctrl button{width:24px;height:24px;border-radius:50%;border:1px solid var(--line);background:#fff;font-size:14px;line-height:1;}
+  .remove-link{font-size:11px;color:#a05050;margin-top:6px;display:inline-block;}
+  .empty-state{text-align:center;padding:50px 10px;color:var(--navy-soft);}
+  .drawer-foot{padding:20px 24px;border-top:1px solid var(--line);background:var(--white);}
+  .total-row{display:flex;justify-content:space-between;font-size:15px;margin-bottom:14px;}
+  .total-row strong{font-family:'Playfair Display',serif;font-size:19px;color:var(--navy);}
+  .modal-back{position:fixed;inset:0;background:rgba(22,35,63,.5);z-index:80;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:40px 16px;}
+  .modal-back.show{display:flex;}
+  .modal{background:var(--white);border-radius:20px;max-width:560px;width:100%;padding:32px;box-shadow:var(--shadow);position:relative;margin:auto;}
+  .modal-close{position:absolute;top:18px;right:18px;background:none;border:none;font-size:20px;color:var(--navy);width:32px;height:32px;}
+  .modal h3{font-size:24px;margin-bottom:6px;}
+  .modal .sub{font-size:13px;color:var(--navy-soft);margin-bottom:22px;}
+  .field{margin-bottom:14px;}
+  .field label{display:block;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--navy-soft);margin-bottom:6px;}
+  .field input,.field select,.field textarea{width:100%;padding:11px 13px;border-radius:10px;border:1px solid var(--line);font-family:'Jost',sans-serif;font-size:14px;background:var(--cream);color:var(--ink);}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--gold);outline-offset:1px;}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  @media (max-width:520px){ .field-row{grid-template-columns:1fr;} }
+  .order-summary{background:var(--cream-2);border-radius:12px;padding:14px 16px;margin-bottom:18px;font-size:13px;}
+  .order-summary .row{display:flex;justify-content:space-between;padding:4px 0;}
+  .form-error{color:#a05050;font-size:12px;margin-top:-8px;margin-bottom:10px;}
+  .fine{font-size:11px;color:var(--navy-soft);margin-top:16px;line-height:1.6;}
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--navy);color:#fff;padding:13px 22px;border-radius:30px;font-size:13px;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:.3s;z-index:100;}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  .loading{text-align:center;padding:60px 20px;color:var(--navy-soft);grid-column:1/-1;}
+  ::-webkit-scrollbar{width:8px;}
+  ::-webkit-scrollbar-thumb{background:var(--gold-light);border-radius:10px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 100 100" fill="none">
+        <path d="M50 30 C40 15, 15 20, 15 38 C15 55, 35 62, 50 78 C65 62, 85 55, 85 38 C85 20, 60 15, 50 30 Z" stroke="#C9A15D" stroke-width="4" fill="none"/>
+        <rect x="35" y="55" width="30" height="24" rx="2" fill="none" stroke="#16233F" stroke-width="3"/>
+        <path d="M50 55 V79 M42 48 Q50 55 58 48 Q54 42 50 48 Q46 42 42 48Z" fill="none" stroke="#C9A15D" stroke-width="3"/>
+      </svg>
+      <div class="brand-text"><div class="name">uphar</div><div class="tag">Thoughtful Gifts</div></div>
+    </div>
+    <nav class="nav-links">
+      <a href="#shop">Shop</a>
+      <a href="#" onclick="openTrack();return false;">Track Order</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" onclick="openCart()" aria-label="Cart">🛍️<span class="cart-count" id="cartCount">0</span></button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">Artificial Blooms &amp; Handmade Wall Art</p>
+      <h1>Gifts that stay<br><em>beautiful forever.</em></h1>
+      <p class="lede">Uphar crafts everlasting flower bouquets and artisan wall pieces — no wilting, no waiting. Each piece is arranged by hand and delivered ready to gift.</p>
+      <div class="hero-ctas">
+        <a class="btn-primary" href="#shop">Shop the Collection →</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <img src="https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?w=700&q=80" alt="Artificial flower bouquet arrangement">
+      <div class="hero-badge">🎁 <span>Handcrafted with care</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="trust">
+  <div class="wrap">
+    <div class="trust-item"><span class="dot"></span> Handcrafted, never wilts</div>
+    <div class="trust-item"><span class="dot"></span> Pan-India doorstep delivery</div>
+    <div class="trust-item"><span class="dot"></span> Free gift note on every order</div>
+    <div class="trust-item"><span class="dot"></span> Secure pay-on-delivery available</div>
+  </div>
+</section>
+
+<section class="section" id="shop">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">The Collection</p>
+      <h2>Made to be kept, not just given</h2>
+      <p>Browse bouquets, framed botanical art, and gift boxes — each one styled to look real, feel premium, and last for years.</p>
+    </div>
+    <div class="chips" id="chips"></div>
+    <div class="grid" id="productGrid"><div class="loading">Loading products…</div></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div>
+      <div class="brand" style="margin-bottom:14px;">
+        <svg class="brand-mark" viewBox="0 0 100 100" fill="none"><path d="M50 30 C40 15, 15 20, 15 38 C15 55, 35 62, 50 78 C65 62, 85 55, 85 38 C85 20, 60 15, 50 30 Z" stroke="#E4C98A" stroke-width="4" fill="none"/></svg>
+        <div class="name" style="color:#FBF3E7;">uphar</div>
+      </div>
+      <p style="max-width:280px;">Thoughtful, everlasting gifts — artificial flower bouquets and handcrafted wall artwork, delivered across India.</p>
+    </div>
+    <div>
+      <h4>Shop</h4>
+      <p><a href="#shop">All Products</a></p>
+      <p><a href="#" onclick="openTrack();return false;">Track an Order</a></p>
+    </div>
+    <div>
+      <h4>Get in Touch</h4>
+      <p>hello@uphar.store</p>
+      <p>+91 90000 00000</p>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>© 2026 Uphar. All rights reserved.</span>
+    <a href="admin.html" style="opacity:.5;">Owner Login</a>
+  </div>
+</footer>
+
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+<div class="drawer" id="cartDrawer">
+  <div class="drawer-head"><h3>Your Bag</h3><button class="close-x" onclick="closeCart()">✕</button></div>
+  <div class="drawer-body" id="cartBody"></div>
+  <div class="drawer-foot" id="cartFoot" style="display:none;">
+    <div class="total-row"><span>Total</span><strong id="cartTotal">₹0</strong></div>
+    <button class="btn-primary" style="width:100%;justify-content:center;" onclick="openCheckout()">Proceed to Checkout</button>
+  </div>
+</div>
+
+<div class="modal-back" id="checkoutModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('checkoutModal')">✕</button>
+    <h3>Delivery Details</h3>
+    <p class="sub">Tell us where to send your gift.</p>
+    <div class="order-summary" id="checkoutSummary"></div>
+    <form id="checkoutForm" onsubmit="submitOrder(event)">
+      <div class="field"><label>Full Name</label><input required id="cf_name" placeholder="Your name"></div>
+      <div class="field-row">
+        <div class="field"><label>Phone Number</label><input required id="cf_phone" type="tel" pattern="[0-9]{10}" placeholder="10-digit mobile"></div>
+        <div class="field"><label>Email (optional)</label><input id="cf_email" type="email" placeholder="you@email.com"></div>
+      </div>
+      <div class="field"><label>Delivery Address</label><textarea required id="cf_address" rows="3" placeholder="House no, street, locality"></textarea></div>
+      <div class="field-row">
+        <div class="field"><label>City</label><input required id="cf_city" placeholder="City"></div>
+        <div class="field"><label>State</label><input required id="cf_state" placeholder="State"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label>Pincode</label><input required id="cf_pincode" pattern="[0-9]{6}" placeholder="6-digit pincode"></div>
+        <div class="field"><label>Payment</label><select id="cf_payment"><option>Cash / UPI on Delivery</option><option>Prepaid (pay now via UPI)</option></select></div>
+      </div>
+      <div class="field"><label>Gift Note (optional)</label><input id="cf_note" placeholder="A short message for the recipient"></div>
+      <div class="form-error" id="checkoutError"></div>
+      <button class="btn-primary" style="width:100%;justify-content:center;margin-top:6px;" type="submit">Place Order</button>
+      <p class="fine">By placing this order you agree to be contacted regarding delivery.</p>
+    </form>
+  </div>
+</div>
+
+<div class="modal-back" id="confirmModal">
+  <div class="modal" style="text-align:center;">
+    <button class="modal-close" onclick="closeModal('confirmModal')">✕</button>
+    <div style="font-size:44px;">🎁</div>
+    <h3>Order Placed!</h3>
+    <p class="sub">Your gift is being prepared for dispatch.</p>
+    <div class="order-summary" style="text-align:left;">
+      <div class="row"><span>Order ID</span><strong id="confirmId"></strong></div>
+      <div class="row"><span>Delivering to</span><span id="confirmCity"></span></div>
+    </div>
+    <p class="fine">Save your Order ID to track status anytime via "Track Order".</p>
+    <button class="btn-primary" style="width:100%;justify-content:center;margin-top:10px;" onclick="closeModal('confirmModal')">Continue Shopping</button>
+  </div>
+</div>
+
+<div class="modal-back" id="trackModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('trackModal')">✕</button>
+    <h3>Track Your Order</h3>
+    <p class="sub">Enter the Order ID you received at checkout.</p>
+    <div class="field"><label>Order ID</label><input id="trackInput" placeholder="e.g. UPH-4821"></div>
+    <button class="btn-primary" onclick="trackOrder()">Track</button>
+    <div id="trackResult" style="margin-top:18px;"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+  getFirestore, collection, getDocs, doc, getDoc, setDoc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCbbBe6yql_4i34BwBxt5rmRclzHaKEQw0",
+  authDomain: "uphar-store-8b3eb.firebaseapp.com",
+  projectId: "uphar-store-8b3eb",
+  storageBucket: "uphar-store-8b3eb.firebasestorage.app",
+  messagingSenderId: "300507168746",
+  appId: "1:300507168746:web:85ebc47d1385bbc37f7c93"
+};
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+let PRODUCTS = [];
+let CART = JSON.parse(localStorage.getItem('uphar_cart') || '[]');
+let activeCategory = 'All';
+
+async function loadProducts(){
+  const snap = await getDocs(collection(db, 'products'));
+  PRODUCTS = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  renderChips();
+  renderProducts();
+}
+loadProducts();
+updateCartUI();
+
+function renderChips(){
+  const cats = ['All', ...new Set(PRODUCTS.map(p=>p.category))];
+  document.getElementById('chips').innerHTML = cats.map(c =>
+    `<button class="chip ${c===activeCategory?'active':''}" onclick="filterCategory('${c}')">${c}</button>`
+  ).join('');
+}
+window.filterCategory = function(cat){
+  activeCategory = cat; renderChips(); renderProducts();
+  document.getElementById('shop').scrollIntoView({behavior:'smooth'});
+};
+function money(n){ return '₹' + Number(n).toLocaleString('en-IN'); }
+
+function renderProducts(){
+  const list = activeCategory==='All' ? PRODUCTS : PRODUCTS.filter(p=>p.category===activeCategory);
+  const grid = document.getElementById('productGrid');
+  if(list.length===0){ grid.innerHTML = '<p class="loading">No products yet — check back soon.</p>'; return; }
+  grid.innerHTML = list.map(p=>{
+    const finalPrice = p.discount>0 ? Math.round(p.price*(1-p.discount/100)) : p.price;
+    return `
+    <div class="card">
+      <div class="card-img">
+        <img src="${p.image}" alt="${p.name}" onerror="this.src='https://images.unsplash.com/photo-1487070183336-b863922373d4?w=500&q=80'">
+        ${p.discount>0 ? `<span class="tag-badge">${p.discount}% OFF</span>` : ''}
+        ${!p.stock ? `<div class="oos-overlay">Out of Stock</div>` : ''}
+      </div>
+      <div class="card-body">
+        <span class="card-cat">${p.category}</span>
+        <h3 class="card-title">${p.name}</h3>
+        <p class="card-desc">${p.desc||''}</p>
+        <div class="price-row">
+          <span class="price-now">${money(finalPrice)}</span>
+          ${p.discount>0 ? `<span class="price-was">${money(p.price)}</span>` : ''}
+        </div>
+        <div class="card-actions">
+          <button class="add-btn" ${!p.stock?'disabled':''} onclick="addToCart('${p.id}')">${p.stock?'Add to Bag':'Out of Stock'}</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+window.addToCart = function(id){
+  const p = PRODUCTS.find(x=>x.id===id);
+  if(!p || !p.stock) return;
+  const existing = CART.find(c=>c.id===id);
+  if(existing){ existing.qty++; } else { CART.push({id:p.id, qty:1}); }
+  localStorage.setItem('uphar_cart', JSON.stringify(CART));
+  updateCartUI();
+  showToast(`${p.name} added to bag`);
+};
+window.changeQty = function(id, delta){
+  const item = CART.find(c=>c.id===id);
+  if(!item) return;
+  item.qty += delta;
+  if(item.qty<=0) CART = CART.filter(c=>c.id!==id);
+  localStorage.setItem('uphar_cart', JSON.stringify(CART));
+  updateCartUI();
+};
+window.removeFromCart = function(id){
+  CART = CART.filter(c=>c.id!==id);
+  localStorage.setItem('uphar_cart', JSON.stringify(CART));
+  updateCartUI();
+};
+function cartLines(){
+  return CART.map(c=>{
+    const p = PRODUCTS.find(x=>x.id===c.id);
+    if(!p) return null;
+    const price = p.discount>0 ? Math.round(p.price*(1-p.discount/100)) : p.price;
+    return {...c, product:p, price, lineTotal: price*c.qty};
+  }).filter(Boolean);
+}
+function cartTotal(){ return cartLines().reduce((s,l)=>s+l.lineTotal,0); }
+
+function updateCartUI(){
+  const count = CART.reduce((s,c)=>s+c.qty,0);
+  document.getElementById('cartCount').textContent = count;
+  const lines = cartLines();
+  const body = document.getElementById('cartBody');
+  const foot = document.getElementById('cartFoot');
+  if(lines.length===0){
+    body.innerHTML = `<div class="empty-state">🎁<br><br>Your bag is empty.<br>Add something beautiful.</div>`;
+    foot.style.display='none';
+    return;
+  }
+  foot.style.display='block';
+  body.innerHTML = lines.map(l=>`
+    <div class="cart-row">
+      <img src="${l.product.image}" alt="${l.product.name}">
+      <div class="ci-info">
+        <div class="ci-name">${l.product.name}</div>
+        <div class="ci-price">${money(l.price)} × ${l.qty} = ${money(l.lineTotal)}</div>
+        <div class="qty-ctrl">
+          <button onclick="changeQty('${l.id}',-1)">−</button><span>${l.qty}</span><button onclick="changeQty('${l.id}',1)">+</button>
+        </div>
+        <a class="remove-link" onclick="removeFromCart('${l.id}')">Remove</a>
+      </div>
+    </div>`).join('');
+  document.getElementById('cartTotal').textContent = money(cartTotal());
+}
+
+window.openCart = function(){ document.getElementById('overlay').classList.add('show'); document.getElementById('cartDrawer').classList.add('show'); };
+window.closeCart = function(){ document.getElementById('overlay').classList.remove('show'); document.getElementById('cartDrawer').classList.remove('show'); };
+
+window.openCheckout = function(){
+  if(CART.length===0) return;
+  const lines = cartLines();
+  document.getElementById('checkoutSummary').innerHTML =
+    lines.map(l=>`<div class="row"><span>${l.product.name} × ${l.qty}</span><span>${money(l.lineTotal)}</span></div>`).join('') +
+    `<div class="row" style="border-top:1px solid var(--line);margin-top:6px;padding-top:8px;"><strong>Total</strong><strong>${money(cartTotal())}</strong></div>`;
+  closeCart();
+  document.getElementById('checkoutModal').classList.add('show');
+};
+window.closeModal = function(id){ document.getElementById(id).classList.remove('show'); };
+
+window.submitOrder = async function(e){
+  e.preventDefault();
+  const lines = cartLines();
+  if(lines.length===0) return;
+  const orderId = 'UPH-' + Math.floor(1000+Math.random()*9000);
+  const order = {
+    orderId, date: new Date().toISOString(), status: 'Placed',
+    items: lines.map(l=>({id:l.id,name:l.product.name,qty:l.qty,price:l.price})),
+    total: cartTotal(),
+    customer:{
+      name: document.getElementById('cf_name').value,
+      phone: document.getElementById('cf_phone').value,
+      email: document.getElementById('cf_email').value,
+      address: document.getElementById('cf_address').value,
+      city: document.getElementById('cf_city').value,
+      state: document.getElementById('cf_state').value,
+      pincode: document.getElementById('cf_pincode').value,
+      payment: document.getElementById('cf_payment').value,
+      note: document.getElementById('cf_note').value,
+    }
+  };
+  try{
+    await setDoc(doc(db, 'orders', orderId), order);
+  }catch(err){
+    document.getElementById('checkoutError').textContent = 'Something went wrong placing your order. Please try again.';
+    console.error(err);
+    return;
+  }
+  CART = [];
+  localStorage.setItem('uphar_cart', JSON.stringify(CART));
+  updateCartUI();
+  closeModal('checkoutModal');
+  document.getElementById('confirmId').textContent = orderId;
+  document.getElementById('confirmCity').textContent = order.customer.city + ', ' + order.customer.state;
+  document.getElementById('confirmModal').classList.add('show');
+  document.getElementById('checkoutForm').reset();
+};
+
+window.openTrack = function(){ document.getElementById('trackModal').classList.add('show'); };
+window.trackOrder = async function(){
+  const id = document.getElementById('trackInput').value.trim().toUpperCase();
+  const el = document.getElementById('trackResult');
+  el.innerHTML = 'Searching…';
+  try{
+    const snap = await getDoc(doc(db, 'orders', id));
+    const order = snap.exists() ? snap.data() : null;
+    if(!order){ el.innerHTML = `<p style="color:#a05050;font-size:13px;">No order found with that ID.</p>`; return; }
+    el.innerHTML = `
+      <div class="order-summary" style="text-align:left;">
+        <div class="row"><span>Status</span><strong>${order.status}</strong></div>
+        <div class="row"><span>Placed on</span><span>${new Date(order.date).toLocaleDateString()}</span></div>
+        <div class="row"><span>Total</span><span>${money(order.total)}</span></div>
+        <div class="row"><span>Delivering to</span><span>${order.customer.city}, ${order.customer.state}</span></div>
+      </div>`;
+  }catch(err){
+    el.innerHTML = `<p style="color:#a05050;font-size:13px;">Couldn't reach the store. Try again shortly.</p>`;
+  }
+};
+
+let toastTimer;
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 2200);
+}
+</script>
+</body>
+</html>
